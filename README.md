@@ -28,4 +28,7 @@ Flags:
   -cv  --pass
     Copy data from stdin to the system clipboard. Also print the data to
     stdout.
+
+  -vc  --rotate
+    Print data from the clipboard, than copy data from stdin to the clipboard.
 ```
