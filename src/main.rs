@@ -6,7 +6,7 @@ mod std_provider;
 use std::process::ExitCode;
 
 use cli::{help, Action, Args};
-use clip::{copy, pass, paste};
+use clip::{copy, pass, paste, rotate};
 use pareg::Pareg;
 use termal::eprintacln;
 
@@ -30,6 +30,7 @@ fn start() -> Result<()> {
         Action::Copy => copy()?,
         Action::Paste => paste()?,
         Action::Pass => pass()?,
+        Action::Rotate => rotate()?,
     }
 
     Ok(())

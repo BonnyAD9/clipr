@@ -5,9 +5,13 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[derive(Debug, Error)]
 pub enum Error {
     #[error(transparent)]
+    Arboard(#[from] arboard::Error),
+    #[error(transparent)]
     Pareg(#[from] pareg::ArgError),
     #[error(transparent)]
     Termal(#[from] termal::error::Error),
+    #[error(transparent)]
+    Utf8(#[from] std::str::Utf8Error),
     #[error(transparent)]
     Io(#[from] std::io::Error),
     #[error("Missing cplipboard provider.")]

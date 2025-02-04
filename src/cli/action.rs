@@ -4,4 +4,5 @@ pub enum Action {
     Copy,
     Paste,
     Pass,
+    Rotate,
 }

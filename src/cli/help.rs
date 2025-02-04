@@ -10,7 +10,7 @@ Version {v}
 
 {'g}Usage:
   {'c}clipr{'_}
-    If stdin is terminal, paste. Otherwise copy.
+    If stdin is terminal, paste. Otherwise pass.
 
   {'c}clipr {'w}<{'y}flag{'w}>{'_}
     Do what the flag says.
@@ -20,15 +20,17 @@ Version {v}
     Show this help.
 
   {'y}-c  --copy{'_}
-    Copy data from stdin to the system clipboard. Stderr must be terminal.
+    Copy data from stdin to the system clipboard.
 
   {'y}-v  --paste{'_}
-    Write data from system clipboard to stdout. Stdin and stderr must be
-    terminal.
+    Write data from system clipboard to stdout.
 
   {'y}-cv  --pass{'_}
     Copy data from stdin to the system clipboard. Also print the data to
     stdout.
+
+  {'y}-vc  --rotate{'_}
+    Print data from the clipboard, than copy data from stdin to the clipboard.
 "
     )
 }

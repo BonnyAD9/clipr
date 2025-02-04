@@ -3,6 +3,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+use arboard::Clipboard;
 use termal::{
     codes,
     raw::{
@@ -23,13 +24,17 @@ pub fn paste() -> Result<()> {
 }
 
 pub fn paste_data() -> Result<Vec<u8>> {
+    paste_data_direct().or_else(|e| paste_data_term().map_err(|_| e))
+}
+
+pub fn paste_data_term() -> Result<Vec<u8>> {
     enable_raw_mode()?;
-    let r = paste_data_inner();
+    let r = paste_data_term_inner();
     disable_raw_mode()?;
     r
 }
 
-fn paste_data_inner() -> Result<Vec<u8>> {
+fn paste_data_term_inner() -> Result<Vec<u8>> {
     let mut term = Terminal::<StdProvider>::default();
 
     if !term.is_in_terminal() || !term.is_out_terminal() {
@@ -51,4 +56,9 @@ fn paste_data_inner() -> Result<Vec<u8>> {
     }
 
     Err(Error::Timeout)
+}
+
+fn paste_data_direct() -> Result<Vec<u8>> {
+    let mut cb = Clipboard::new()?;
+    Ok(cb.get_text()?.into())
 }

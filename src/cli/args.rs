@@ -20,6 +20,7 @@ impl Args {
                 "-c" | "--copy" => action = Some(Action::Copy),
                 "-v" | "--paste" => action = Some(Action::Paste),
                 "-cv" | "--pass" => action = Some(Action::Pass),
+                "-vc" | "--rotate" => action = Some(Action::Rotate),
                 _ => return args.err_unknown_argument().err()?,
             }
         }
@@ -27,7 +28,7 @@ impl Args {
         Ok(Self {
             action: action
                 .or_else(|| stdin().is_terminal().then_some(Action::Paste))
-                .unwrap_or(Action::Copy),
+                .unwrap_or(Action::Pass),
         })
     }
 }
