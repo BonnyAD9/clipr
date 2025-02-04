@@ -2,7 +2,7 @@ use std::io::{stdin, Read, Write};
 
 use termal::{codes, raw::Terminal};
 
-use crate::{stdie_provider::StdieProvider, Error, Result};
+use crate::{std_provider::StdProvider, Error, Result};
 
 pub fn copy() -> Result<()> {
     let mut data = vec![];
@@ -12,7 +12,7 @@ pub fn copy() -> Result<()> {
 }
 
 pub fn copy_data(data: &[u8]) -> Result<()> {
-    let mut term = Terminal::<StdieProvider>::default();
+    let mut term = Terminal::<StdProvider>::default();
 
     if !term.is_out_terminal() {
         return Err(Error::NoClipboardProvider);

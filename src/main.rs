@@ -3,7 +3,7 @@ mod copy;
 mod err;
 mod pass;
 mod paste;
-mod stdie_provider;
+mod std_provider;
 
 use std::process::ExitCode;
 

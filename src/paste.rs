@@ -12,7 +12,7 @@ use termal::{
     },
 };
 
-use crate::{stdie_provider::StdieProvider, Error, Result};
+use crate::{std_provider::StdProvider, Error, Result};
 
 pub fn paste() -> Result<()> {
     let d = paste_data()?;
@@ -30,7 +30,7 @@ pub fn paste_data() -> Result<Vec<u8>> {
 }
 
 fn paste_data_inner() -> Result<Vec<u8>> {
-    let mut term = Terminal::<StdieProvider>::default();
+    let mut term = Terminal::<StdProvider>::default();
 
     if !term.is_in_terminal() || !term.is_out_terminal() {
         return Err(Error::NoClipboardProvider);
