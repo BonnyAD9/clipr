@@ -1,4 +1,7 @@
-use std::io::{stdin, Read, Write};
+use std::{
+    env,
+    io::{stdin, Read, Write},
+};
 
 use arboard::Clipboard;
 use termal::{codes, raw::Terminal};
@@ -13,18 +16,19 @@ pub fn copy() -> Result<()> {
 }
 
 pub fn copy_data(data: &[u8]) -> Result<()> {
-    // Try do both, on wayland, copy_data_direct may not properly retain the
-    // clipboard, but `copy_data_term` is unrelayable because if the terminal
-    // doesn't support it, it will fail silently. (also it will not work if
-    // both stdin and stderr are not terminal)
-    let e = copy_data_term(data);
-    copy_data_direct(data).map_err(|e2| {
-        if let Err(e) = e {
-            Error::Double(Box::new((e, e2)))
-        } else {
-            e2
-        }
-    })
+    // On wayland, `copy_data_direct` will propably silently fail, so prefer to
+    // use the terminal variant. Otherwise the direct variant is more reliable.
+    let session = env::var("XDG_SESSION_TYPE").unwrap_or_default();
+    if session == "wayland" {
+        copy_data_term(data).or_else(|e| {
+            copy_data_direct(data)
+                .map_err(|e2| Error::Double(Box::new((e, e2))))
+        })
+    } else {
+        copy_data_direct(data).or_else(|e| {
+            copy_data_term(data).map_err(|e2| Error::Double(Box::new((e, e2))))
+        })
+    }
 }
 
 pub fn copy_data_term(data: &[u8]) -> Result<()> {
