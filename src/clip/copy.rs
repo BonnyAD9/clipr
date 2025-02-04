@@ -17,8 +17,14 @@ pub fn copy_data(data: &[u8]) -> Result<()> {
     // clipboard, but `copy_data_term` is unrelayable because if the terminal
     // doesn't support it, it will fail silently. (also it will not work if
     // both stdin and stderr are not terminal)
-    _ = copy_data_term(data);
-    copy_data_direct(data)
+    let e = copy_data_term(data);
+    copy_data_direct(data).map_err(|e2| {
+        if let Err(e) = e {
+            Error::Double(Box::new((e, e2)))
+        } else {
+            e2
+        }
+    })
 }
 
 pub fn copy_data_term(data: &[u8]) -> Result<()> {

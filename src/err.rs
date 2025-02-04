@@ -18,4 +18,6 @@ pub enum Error {
     NoClipboardProvider,
     #[error("Timeout for clipboard has passed.")]
     Timeout,
+    #[error("{} |and| {}", .0.0, .0.1)]
+    Double(Box<(Error, Error)>),
 }

@@ -24,7 +24,9 @@ pub fn paste() -> Result<()> {
 }
 
 pub fn paste_data() -> Result<Vec<u8>> {
-    paste_data_direct().or_else(|e| paste_data_term().map_err(|_| e))
+    paste_data_direct().or_else(|e| {
+        paste_data_term().map_err(|e2| Error::Double(Box::new((e, e2))))
+    })
 }
 
 pub fn paste_data_term() -> Result<Vec<u8>> {
