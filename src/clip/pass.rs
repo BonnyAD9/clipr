@@ -1,6 +1,8 @@
 use std::io::{stdin, stdout, Read, Write};
 
-use crate::{copy_data, Result};
+use crate::Result;
+
+use super::copy_data;
 
 pub fn pass() -> Result<()> {
     let mut data = vec![];

@@ -1,17 +1,16 @@
 mod cli;
-mod copy;
+mod clip;
 mod err;
-mod pass;
-mod paste;
 mod std_provider;
 
 use std::process::ExitCode;
 
 use cli::{help, Action, Args};
+use clip::{copy, pass, paste};
 use pareg::Pareg;
 use termal::eprintacln;
 
-pub use self::{copy::*, err::*, pass::*, paste::*};
+pub use self::err::*;
 
 fn main() -> ExitCode {
     match start() {

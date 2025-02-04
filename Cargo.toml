@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+arboard = "3.4.1"
 pareg = "0.7.0"
 termal = { version = "2.0.0", features = ["events"]}
 thiserror = "2.0.11"
