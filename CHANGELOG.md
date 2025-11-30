@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## future
+## v0.1.2
 - Fix support by upgrading dependencies.
 
 ## v0.1.1
