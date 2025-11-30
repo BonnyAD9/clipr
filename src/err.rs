@@ -9,7 +9,7 @@ pub enum Error {
     #[error(transparent)]
     Pareg(#[from] pareg::ArgError),
     #[error(transparent)]
-    Termal(#[from] termal::error::Error),
+    Termal(#[from] termal::Error),
     #[error(transparent)]
     Utf8(#[from] std::str::Utf8Error),
     #[error(transparent)]

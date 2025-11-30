@@ -15,7 +15,7 @@ impl WaitForIn for StdProvider {
     fn wait_for_in(
         &self,
         timeout: std::time::Duration,
-    ) -> termal::error::Result<bool> {
+    ) -> termal::Result<bool> {
         wait_for_stdin(timeout)
     }
 }

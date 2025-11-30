@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## future
+- Fix support by upgrading dependencies.
+
 ## v0.1.1
 ### Fixes
 - Prefer terminal copy on wayland so that clipboard is retained.
