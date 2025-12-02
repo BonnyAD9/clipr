@@ -1,4 +1,6 @@
 # clipr
+[![version][version-badge]][aur]
+
 Command line utility to read from and write to system clipboard.
 
 I was frustrated that xclip sometimes works and sometimes not, so i wrote this.
@@ -32,3 +34,6 @@ Flags:
   -vc  --rotate
     Print data from the clipboard, than copy data from stdin to the clipboard.
 ```
+
+[version-badge]: https://img.shields.io/aur/version/clipr
+[aur]: https://aur.archlinux.org/packages/clipr
