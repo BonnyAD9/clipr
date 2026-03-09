@@ -32,9 +32,9 @@ Version {v}
   {'y}-vc  --rotate{'_}
     Print data from the clipboard, than copy data from stdin to the clipboard.
 
-    “ {'i}Whoever scorns instruction will pay for it,
-      but whoever respects a command is rewarded. {'_}”
-                                   {'w bold}✝ Proverbs 15:15{'_}
+ “ {'i}Whoever scorns instruction will pay for it,
+   but whoever respects a command is rewarded. {'_}”
+                                {'w bold}✝ Proverbs 15:15{'_}
 "
     )
 }
