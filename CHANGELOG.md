@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## future
+## v0.1.3
 - Update help.
 
 ## v0.1.2
